@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat kamuu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="start-screen" onclick="startWeb()">
+    <h1>Klik yaa 😊 </h1>
+</div>
+
+<!-- CONTENT -->
+<div id="content" class="container" style="display:none;">
+
+    <div class="unicorn">
+        <img src="Foto/unicorn6.png" alt="Unicorn">
+    </div>
+
+    <h1>Semangat Terus Yaa!</h1>
+
+    <h2 class="typing">Rahmadania Arrum Pratisa</h2>
+
+    <p class="ayat">
+        "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ"
+
+    <span class="arti">Dan Dia (Allah) bersama kamu di mana saja kamu berada</span>
+
+    <span class="sumber">QS. Al-Hadid: 4</span>
+    </p>
+
+    <button onclick="slideTiga()" class="nextBtn">
+        Klik Lagi 💖
+    </button>
+
+</div>
+
+<!-- SLIDE 3 -->
+<div id="slide3" class="slide3" style="display:none;">
+
+    <div class="slide3Content">
+
+        <div class="bungaBesar">
+            <img src="Foto/nyota1.png" alt="">
+        </div>
+
+        <h2 class="typing">Keep Smiling</h2>
+
+        <button onclick="slideEmpat()" class="nextBtn">
+            Lanjut 💖
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SLIDE 4 -->
+<div id="slide4" class="slide4" style="display:none;">
+
+    <h2>
+    Tebak Tebakan Yuk 😆
+    </h2>
+
+    <p class="teksTebak">
+        Coba tebak siapa nama yang bikin ini ? 🤭
+    </p>
+
+    <input
+        type="text"
+        id="jawaban"
+        placeholder="Masukkan nama..."
+    >
+
+    <button onclick="cekJawaban()" class="nextBtn">
+        Coba Cek 
+    </button>
+
+
+</div>
+
+<!-- SLIDE 5 -->
+<div id="slide5" class="slide5" style="display:none;">
+
+    <video
+        id="videoKejutan"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+        <source src="Video/unicorn.mp4" type="video/mp4">
+    </video>
+
+    <div class="videoText">
+        <h2 class="typing"> For You Alynne</h2>
+
+        <!-- tombol awalnya disembunyikan -->
+        <button
+            id="btnLanjutVideo"
+            onclick="slideEnam()"
+            class="nextBtn"
+            style="display:none;"
+        >
+            Lanjut 💖
+        </button>
+    </div>
+
+</div>
+
+<!-- SLIDE 6 -->
+<div id="slide6" class="slide5" style="display:none;">
+
+    <video
+        id="videoKedua"
+        loop
+        playsinline
+    >
+        <source src="Video/nailong1.mp4" type="video/mp4">
+    </video>
+
+    <div class="videoText">
+
+        <h2 class="typing">
+            One More Thing 💖
+        </h2>
+
+        <button
+            id="btnVideo2"
+            class="nextBtn"
+            style="display:none;"
+            onclick="slideTujuh()"
+        >
+            Lanjut Lagi 💖
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SLIDE 7 -->
+<div id="slide7" class="slide4" style="display:none;">
+
+    <h2 class="typing">
+        Makasih udah sampai akhir 💖
+    </h2>
+
+    <p class="teksTebak">
+        Semoga harimu selalu dipenuhi hal baik ✨
+    </p>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="musik" loop preload="auto">
+    <source src="Lagu/PenjagaHati.mp3" type="audio/mpeg">
+</audio>
+
+<!-- JS -->
+<script>
+function startWeb(){
+    const musik = document.getElementById('musik');
+    const startScreen = document.getElementById('startScreen');
+    const content = document.getElementById('content');
+
+    startScreen.style.display = "none";
+    content.style.display = "block";
+
+    musik.load();
+    musik.play().catch(err => console.log(err));
+
+}
+
+function buatLove(){
+    const love = document.createElement("div");
+    love.classList.add("love");
+    love.innerHTML = "💖";
+
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 5000);
+}
+
+function slideTiga(){
+
+    document.getElementById("content")
+        .style.display = "none";
+
+    document.getElementById("slide3")
+        .style.display = "flex";
+
+    setInterval(buatBunga, 300);
+}
+
+/* BUNGA */
+
+function buatBunga(){
+
+    const bunga =
+        document.createElement("div");
+
+    bunga.classList.add("bunga");
+
+    bunga.innerHTML = "🌸";
+
+    bunga.style.left =
+        Math.random() * 100 + "vw";
+
+    bunga.style.animationDuration =
+        (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(bunga);
+
+    setTimeout(() => {
+        bunga.remove();
+    }, 6000);
+}
+
+function slideEmpat(){
+
+    document.getElementById("slide3")
+        .style.display = "none";
+
+    document.getElementById("slide4")
+        .style.display = "flex";
+}
+
+function cekJawaban(){
+
+    const jawaban =
+        document.getElementById("jawaban")
+        .value
+        .toLowerCase()
+        .trim();
+
+    if(
+        jawaban === "alfian adi nugroho" ||
+        jawaban === "alfian"
+    ){
+
+        Swal.fire({
+            title: "Kok bisa bener sih? 😳",
+            text: "Yeay, kamu berhasil nebak, Coba klik tombol ini deh, siapa tau ada kejutan kecil 🤭",
+            icon: "success",
+            confirmButtonText: "Klik Aku Disini Yaa"
+        }).then((result)=>{
+
+            if(result.isConfirmed){
+
+                document.getElementById("slide4")
+                    .style.display = "none";
+
+                document.getElementById("slide5")
+                    .style.display = "flex";
+
+                const video =
+                    document.getElementById("videoKejutan");
+
+                video.currentTime = 0;
+                video.play();
+
+                const tulisan =
+                    document.querySelector("#slide5 .typing");
+
+                // tampil dulu
+                tulisan.style.display = "block";
+
+                // hilang setelah 4 detik
+                setTimeout(()=>{
+
+                    tulisan.style.opacity = "0";
+
+                },10000);
+
+                // sembunyikan tombol dulu
+                document.getElementById(
+                    "btnLanjutVideo"
+                ).style.display = "none";
+
+                // tunggu sebentar agar durasi video terbaca
+setTimeout(()=>{
+
+    const durasi =
+        video.duration * 1000;
+
+    setTimeout(()=>{
+
+        document.getElementById(
+            "btnLanjutVideo"
+        ).style.display = "block";
+
+    }, durasi - 1000); // muncul 1 detik sebelum loop
+
+},500);
+
+            }
+
+        });
+
+    }else{
+
+        Swal.fire({
+            title: "Hihi belum bener 😜",
+            text: "Coba diinget lagi, pasti tauu 🤭",
+            icon: "error",
+            confirmButtonText: "Coba Lagi"
+        });
+
+    }
+
+}
+
+function slideEnam(){
+
+    document.getElementById("slide5")
+        .style.display = "none";
+
+    document.getElementById("slide6")
+        .style.display = "flex";
+
+    // matikan musik Penjaga Hati
+    const musik =
+        document.getElementById("musik");
+
+    musik.pause();
+
+    // jalankan video Nailong dengan suara aktif
+    const video2 =
+        document.getElementById("videoKedua");
+
+    video2.muted = false;
+    video2.currentTime = 0;
+    video2.play();
+
+    document.getElementById(
+        "btnVideo2"
+    ).style.display = "none";
+
+    video2.onended = function(){
+
+        document.getElementById(
+            "btnVideo2"
+        ).style.display = "block";
+
+    };
+
+}
+
+function slideTujuh(){
+
+    document.getElementById("slide6")
+        .style.display = "none";
+
+    document.getElementById("slide7")
+        .style.display = "flex";
+
+}
+
+</script>
+
+
+</body>
+</html>
