@@ -109,19 +109,11 @@ function cekJawaban(){
 
             if(result.isConfirmed){
 
-                document.getElementById("slide4")
-                    .style.display = "none";
+                slideFoto();
 
-                document.getElementById("slide5")
-                    .style.display = "flex";
+    }
 
-                const video =
-                    document.getElementById("videoKejutan");
-
-
-            }
-
-        });
+});
 
     }else{
 
@@ -174,5 +166,32 @@ function slideTujuh(){
 
     document.getElementById("slide7")
         .style.display = "flex";
+
+}
+
+//* SLIDE FOTO */
+function slideFoto(){
+
+    document.getElementById("slide4")
+        .style.display = "none";
+
+    document.getElementById("slideFoto")
+        .style.display = "flex";
+
+}
+
+function slideVideo(){
+
+    document.getElementById("slideFoto")
+        .style.display = "none";
+
+    document.getElementById("slide5")
+        .style.display = "flex";
+
+    const video =
+        document.getElementById("videoKejutan");
+
+    video.currentTime = 0;
+    video.play();
 
 }

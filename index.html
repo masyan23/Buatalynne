@@ -40,7 +40,7 @@
     </p>
 
     <button onclick="slideTiga()" class="nextBtn">
-        Klik Lagi 💖
+        Klik aku untuk dapat gift
     </button>
 
 </div>
@@ -51,13 +51,27 @@
     <div class="slide3Content">
 
         <div class="bungaBesar">
+
+            <div class="bubble">
+
+            <span class="line1">
+                Hallo Alynne,
+            </span>
+
+            <span class="line2">
+                namaku Nyota 😊
+            </span>
+
+        </div>
+
             <img src="Foto/nyota1.png" alt="">
+
         </div>
 
         <h2 class="typing">Keep Smiling</h2>
 
         <button onclick="slideEmpat()" class="nextBtn">
-            Lanjut 💖
+            Klik aku 💖
         </button>
 
     </div>
@@ -72,7 +86,7 @@
     </h2>
 
     <p class="teksTebak">
-        Coba tebak siapa nama yang bikin ini ? 🤭
+        Coba tebak siapa nama yang bikin ini ?🤭 
     </p>
 
     <input
@@ -88,6 +102,29 @@
 
 </div>
 
+<!-- SLIDE FOTO -->
+<div id="slideFoto" class="slideFoto" style="display:none;">
+
+    <div class="fotoContainer">
+
+        <img src="Foto/Foto1.jpeg" class="foto foto1">
+        <img src="Foto/Foto2.jpeg" class="foto foto2">
+        <img src="Foto/Foto3.jpeg" class="foto foto3">
+        <img src="Foto/Foto4.jpeg" class="foto foto4">
+
+    </div>
+
+    <h2 class="typing"> Izin tampilin fotomu yaa hehe 😊</h2>
+
+    <button
+        class="nextBtn"
+        onclick="slideVideo()"
+    >
+        Special ini 💖
+    </button>
+
+</div>
+
 <!-- SLIDE 5 -->
 <div id="slide5" class="slide5" style="display:none;">
 
@@ -96,13 +133,14 @@
         autoplay
         muted
         loop
+        preload="auto"
         playsinline
     >
         <source src="Video/unicorn.mp4" type="video/mp4">
     </video>
 
     <div class="videoText">
-        <h2 class="typing"> For You Alynne</h2>
+        <h2 class="typing"> For You Alynne 😊</h2>
 
         <!-- tombol awalnya disembunyikan -->
         <button
@@ -111,7 +149,7 @@
             class="nextBtn"
             style="display:none;"
         >
-            Lanjut 💖
+            Klik aku 💖
         </button>
     </div>
 
@@ -122,16 +160,26 @@
 
     <video
         id="videoKedua"
-        loop
+        preload="auto"
         playsinline
     >
         <source src="Video/nailong4.mp4" type="video/mp4">
     </video>
 
-    <div class="videoText">
+        <h2 class="typingVideo">
 
-        <h2 class="typing">
-            One More Thing 💖
+            <div class="lineWrap">
+                <span class="lineVideo1">
+                    Biar lebih rilex, ayo Alynne
+                </span>
+            </div>
+
+            <div class="lineWrap">
+                <span class="lineVideo2">
+                    ikutin gerakannya haha 🤭
+                </span>
+            </div>
+
         </h2>
 
         <button
@@ -151,11 +199,14 @@
 <div id="slide7" class="slide4" style="display:none;">
 
     <h2 class="typing">
-        Makasih udah sampai akhir 💖
+        Makasih udah nonton sampai akhir 💖
     </h2>
 
-    <p class="teksTebak">
-        Semoga harimu selalu dipenuhi hal baik ✨
+    <p class="teksTebak akhirText">
+        Semoga setelah lihat ini, <br>
+        mood kamu jadi lebih baik, <br>
+        lebih semangat jalanin harinya, <br>
+        dan jangan lupa senyum yaa 😊
     </p>
 
 </div>
@@ -168,15 +219,39 @@
 <!-- JS -->
 <script>
 function startWeb(){
-    const musik = document.getElementById('musik');
-    const startScreen = document.getElementById('startScreen');
-    const content = document.getElementById('content');
+
+    const musik =
+        document.getElementById("musik");
+
+    const startScreen =
+        document.getElementById("startScreen");
+
+    const content =
+        document.getElementById("content");
+
+    const video1 =
+        document.getElementById("videoKejutan");
+
+    const video2 =
+        document.getElementById("videoKedua");
 
     startScreen.style.display = "none";
     content.style.display = "block";
 
     musik.load();
     musik.play().catch(err => console.log(err));
+
+    // siapkan video dari awal
+    video1.load();
+    video2.load();
+
+    const semuaFoto =
+        document.querySelectorAll(".foto");
+
+    semuaFoto.forEach(foto => {
+        const img = new Image();
+        img.src = foto.src;
+    });
 
 }
 
@@ -251,61 +326,17 @@ function cekJawaban(){
     ){
 
         Swal.fire({
-            title: "Kok bisa bener sih? 😳",
-            text: "Yeay, kamu berhasil nebak, Coba klik tombol ini deh, siapa tau ada kejutan kecil 🤭",
+            title: "Wah ketebak dong namaku 😆",
+            text: "Yeay, kamu berhasil nebak, Coba klik tombol ini deh, siapa tau ada sesuatu lagi 🤭",
             icon: "success",
             confirmButtonText: "Klik Aku Disini Yaa"
         }).then((result)=>{
 
             if(result.isConfirmed){
 
-                document.getElementById("slide4")
-                    .style.display = "none";
+    slideFoto();
 
-                document.getElementById("slide5")
-                    .style.display = "flex";
-
-                const video =
-                    document.getElementById("videoKejutan");
-
-                video.currentTime = 0;
-                video.play();
-
-                const tulisan =
-                    document.querySelector("#slide5 .typing");
-
-                // tampil dulu
-                tulisan.style.display = "block";
-
-                // hilang setelah 4 detik
-                setTimeout(()=>{
-
-                    tulisan.style.opacity = "0";
-
-                },10000);
-
-                // sembunyikan tombol dulu
-                document.getElementById(
-                    "btnLanjutVideo"
-                ).style.display = "none";
-
-                // tunggu sebentar agar durasi video terbaca
-setTimeout(()=>{
-
-    const durasi =
-        video.duration * 1000;
-
-    setTimeout(()=>{
-
-        document.getElementById(
-            "btnLanjutVideo"
-        ).style.display = "block";
-
-    }, durasi - 1000); // muncul 1 detik sebelum loop
-
-},500);
-
-            }
+}
 
         });
 
@@ -313,7 +344,7 @@ setTimeout(()=>{
 
         Swal.fire({
             title: "Hihi belum bener 😜",
-            text: "Coba diinget lagi, pasti tauu 🤭",
+            text: "Coba diinget lagi, pasti tauu 🤭, vamasy kan nama motorku 😩",
             icon: "error",
             confirmButtonText: "Coba Lagi"
         });
@@ -330,29 +361,40 @@ function slideEnam(){
     document.getElementById("slide6")
         .style.display = "flex";
 
-    // matikan musik Penjaga Hati
+    // matikan musik
     const musik =
         document.getElementById("musik");
 
     musik.pause();
 
-    // jalankan video Nailong dengan suara aktif
+    // video nailong
     const video2 =
         document.getElementById("videoKedua");
 
     video2.muted = false;
+
+    let jumlahLoop = 0;
+
     video2.currentTime = 0;
     video2.play();
 
-    document.getElementById(
-        "btnVideo2"
-    ).style.display = "none";
-
+    // setelah video selesai
     video2.onended = function(){
 
-        document.getElementById(
-            "btnVideo2"
-        ).style.display = "block";
+        jumlahLoop++;
+
+        // ulang 3x
+        if(jumlahLoop < 3){
+
+            video2.currentTime = 0;
+            video2.play();
+
+        }else{
+
+            // otomatis ke slide akhir
+            slideTujuh();
+
+        }
 
     };
 
@@ -360,11 +402,102 @@ function slideEnam(){
 
 function slideTujuh(){
 
-    document.getElementById("slide6")
+    const slide6 =
+        document.getElementById("slide6");
+
+    // fade out
+    slide6.classList.add("fade-out");
+
+    setTimeout(() => {
+
+        slide6.style.display = "none";
+
+        const slide7 =
+            document.getElementById("slide7");
+
+        slide7.style.display = "flex";
+
+        // fade in
+        slide7.classList.add("fade-in");
+
+    }, 1000);
+
+}
+
+// SLIDE FOTO
+function slideFoto(){
+
+    document.getElementById("slide4")
         .style.display = "none";
 
-    document.getElementById("slide7")
+    document.getElementById("slideFoto")
         .style.display = "flex";
+
+    const foto =
+        document.querySelectorAll(".foto");
+
+    let index = 0;
+
+    setInterval(()=>{
+
+        foto[index]
+            .classList.remove("aktif");
+
+        index =
+            (index + 1) % foto.length;
+
+        foto[index]
+            .classList.add("aktif");
+
+    },2000);
+
+}
+
+// VIDEO UNICORN
+function slideVideo(){
+
+    document.getElementById("slideFoto")
+        .style.display = "none";
+
+    document.getElementById("slide5")
+        .style.display = "flex";
+
+    const video =
+        document.getElementById("videoKejutan");
+
+    video.currentTime = 0;
+    video.play();
+
+    const tulisan =
+        document.querySelector("#slide5 .typing");
+
+    tulisan.style.display = "block";
+    tulisan.style.opacity = "1";
+
+    setTimeout(()=>{
+
+        tulisan.style.opacity = "0";
+
+    },10000);
+
+    document.getElementById(
+        "btnLanjutVideo"
+    ).style.display = "none";
+
+    setTimeout(()=>{
+
+        const durasi =
+            video.duration * 1000;
+
+        setTimeout(()=>{
+
+            document.getElementById(
+                "btnLanjutVideo"
+            ).style.display = "block";
+
+        },durasi - 1000);
+
+    },500);
 
 }
 
